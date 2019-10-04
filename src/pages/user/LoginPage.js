@@ -1,11 +1,42 @@
 import React from "react";
+import { connect } from "react-redux";
+import { withAlert } from "react-meerkat";
+import { userLoginAction } from "../../actions/userActions";
+import LoginForm from "../../components/LoginForm";
 
-export default class LoginPage extends React.Component {
+class LoginPage extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            loading: false
+        };
+        this.isComponentMounted = true;
+    }
+    componentWillUnmount() {
+        this.isComponentMounted = false;
+    }
+    onSubmit = async user => {
+        try {
+            await this.props.userLoginAction(user);
+            this.props.alert.success("Login successfull");
+        } catch (err) {
+            this.props.alert.error(err.message);
+        } finally {
+            if (this.isComponentMounted) {
+                this.setState({ loading: false });
+            }
+        }
+    };
     render() {
         return (
             <div>
-                <h1>user login</h1>
+                <LoginForm onSubmit={this.onSubmit} />
             </div>
         );
     }
 }
+
+export default connect(
+    null,
+    { userLoginAction }
+)(withAlert(LoginPage));

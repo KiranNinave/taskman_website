@@ -1,20 +1,12 @@
 import React from "react";
-import { connect } from "react-redux";
-import { userLoginAction } from "../actions/userActions";
 
 class LoginForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            loading: false,
             email: "",
             password: ""
         };
-        this.isComponentMounted = true;
-    }
-
-    componentWillUnmount() {
-        this.isComponentMounted = false;
     }
 
     handleChange = e => {
@@ -23,18 +15,9 @@ class LoginForm extends React.Component {
 
     onSubmit = async e => {
         e.preventDefault();
-        this.setState({ loading: true });
         const { email, password } = this.state;
         const user = { email, password };
-        try {
-            await this.props.userLoginAction(user);
-        } catch (err) {
-            console.log(err);
-        } finally {
-            if (this.isComponentMounted) {
-                this.setState({ loading: false });
-            }
-        }
+        await this.props.onSubmit(user);
     };
 
     render() {
@@ -48,7 +31,7 @@ class LoginForm extends React.Component {
                             value={this.state.email}
                             onChange={this.handleChange}
                             placeholder="email"
-                            required
+                            // required
                         />
                     </p>
                     <p>
@@ -71,7 +54,4 @@ class LoginForm extends React.Component {
     }
 }
 
-export default connect(
-    null,
-    { userLoginAction }
-)(LoginForm);
+export default LoginForm;

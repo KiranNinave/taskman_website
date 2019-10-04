@@ -1,4 +1,4 @@
-export const key = "taskman_user";
+export const key = "taskman_admin";
 
 export const saveUserOnStorage = data => {
     localStorage.setItem(key, JSON.stringify(data));

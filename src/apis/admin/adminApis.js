@@ -1,10 +1,10 @@
-import { sendUrlEncodedRequest, httpMethods } from "./functions/requests";
-import { sendResponse } from "./functions/responses";
+import { sendUrlEncodedRequest, httpMethods } from "../functions/requests";
+import { sendResponse } from "../functions/responses";
 
-export const userLoginApi = async (user = {}) => {
+export const adminLoginApi = async (user = {}) => {
     try {
         const response = await sendUrlEncodedRequest(
-            "/user/login",
+            "/admin/login",
             httpMethods.POST,
             user
         );

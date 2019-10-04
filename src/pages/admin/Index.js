@@ -10,7 +10,7 @@ import AdminRouter from "../../routes/AdminRoutes";
 export default function Admin() {
     return (
         <React.Fragment>
-            <Header user="admin" pathname="/admin" />
+            <Header pathname="/admin" />
             <SideNav pathname="/admin" />
             <h1>admin</h1>
             <AdminRouter />
