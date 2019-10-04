@@ -9,7 +9,10 @@ const PrivateRoute = props => {
         if (admin) {
             if (user.role.type === "admin") result = true;
             else result = false;
-        } else result = true;
+        } else {
+            if (user.role.type === "user") result = true;
+            else result = false;
+        }
     } else {
         result = false;
     }

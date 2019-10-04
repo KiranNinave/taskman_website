@@ -1,4 +1,5 @@
 import React from "react";
+import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { withAlert } from "react-meerkat";
 import { userLoginAction } from "../../actions/userActions";
@@ -19,6 +20,7 @@ class LoginPage extends React.Component {
         try {
             await this.props.userLoginAction(user);
             this.props.alert.success("Login successfull");
+            this.props.history.push("/user/home");
         } catch (err) {
             this.props.alert.error(err.message);
         } finally {
@@ -28,6 +30,10 @@ class LoginPage extends React.Component {
         }
     };
     render() {
+        const { user } = this.props;
+        if (user && user.role.type === "user") {
+            return <Redirect to="/user/home" />;
+        }
         return (
             <div>
                 <LoginForm onSubmit={this.onSubmit} />
@@ -36,7 +42,11 @@ class LoginPage extends React.Component {
     }
 }
 
+const mapStateToProps = state => ({
+    user: state.user.user
+});
+
 export default connect(
-    null,
+    mapStateToProps,
     { userLoginAction }
 )(withAlert(LoginPage));
