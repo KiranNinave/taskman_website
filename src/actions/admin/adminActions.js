@@ -3,7 +3,7 @@ import { adminLoginApi } from "../../apis/admin/adminApis";
 import {
     saveUserOnStorage,
     deleteUserFromStorage
-} from "../../apis/admin/storageApis";
+} from "../../apis/storageApis";
 
 export const adminLoginAction = user => async dispatch => {
     try {
