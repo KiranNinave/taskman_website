@@ -1,4 +1,6 @@
 import React from "react";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import Container from "@material-ui/core/Container";
 
 // layouts
 import Header from "../../layouts/Header";
@@ -11,9 +13,11 @@ export default function Admin() {
     return (
         <React.Fragment>
             <Header pathname="/admin" />
-            <SideNav pathname="/admin" />
-            <h1>admin</h1>
-            <AdminRouter />
+            <CssBaseline />
+            <Container fixed>
+                <SideNav pathname="/admin" />
+                <AdminRouter />
+            </Container>
         </React.Fragment>
     );
 }

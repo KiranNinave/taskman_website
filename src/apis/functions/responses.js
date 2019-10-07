@@ -2,8 +2,8 @@ export const sendResponse = async (response = {}) => {
     if (response.status === 401)
         throw new Error("Invalid credentials please relogin");
 
-    let json = null;
-    if (response.status !== 404) json = await response.json();
+    if (response.status === 404) throw new Error("404 Item not found");
+    const json = await response.json();
     if (process.env.NODE_ENV === "development") console.log(json);
     if (response.status === 400) throw new Error(json.message || "Bad request");
 

@@ -4,6 +4,8 @@ import LoginForm from "../../components/LoginForm";
 import { withAlert } from "react-meerkat";
 import { connect } from "react-redux";
 import { adminLoginAction } from "../../actions/admin/adminActions";
+import Paper from "@material-ui/core/Paper";
+import Typography from "@material-ui/core/Typography";
 
 class LoginPage extends React.Component {
     constructor(props) {
@@ -36,9 +38,12 @@ class LoginPage extends React.Component {
             return <Redirect to="/admin/home" />;
         }
         return (
-            <div>
+            <Paper style={{ padding: 20 }}>
+                <Typography variant="h5" component="h3">
+                    Login
+                </Typography>
                 <LoginForm onSubmit={this.onSubmit} />
-            </div>
+            </Paper>
         );
     }
 }

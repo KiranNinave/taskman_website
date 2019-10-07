@@ -16,6 +16,7 @@ const PrivateRoute = props => {
     } else {
         result = false;
     }
+
     let pathname = "/";
     if (pathtype === "/admin") pathname = "/admin";
     if (pathtype === "/user") pathname = "/user/login";

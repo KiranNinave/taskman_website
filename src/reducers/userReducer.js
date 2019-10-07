@@ -1,8 +1,9 @@
-import { LOGIN_USER, LOGOUT_USER } from "../actions/types";
+import { LOGIN_USER, LOGOUT_USER, GET_USER } from "../actions/types";
 
 const initalState = {
     token: null,
-    user: null
+    user: null,
+    users: []
 };
 
 export default (state = initalState, action) => {
@@ -16,6 +17,11 @@ export default (state = initalState, action) => {
             return {
                 token: null,
                 user: null
+            };
+        case GET_USER:
+            return {
+                ...state,
+                users: action.payload
             };
         default:
             return state;
