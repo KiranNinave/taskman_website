@@ -36,9 +36,15 @@ class HomePage extends React.Component {
                                 </Link>
                             </div>
 
-                            <div>
+                            <div style={{ marginRight: 30 }}>
                                 <Link to="/user/home">
                                     <Button variant="contained">home</Button>
+                                </Link>
+                            </div>
+
+                            <div>
+                                <Link to="/admin">
+                                    <Button variant="contained">admin</Button>
                                 </Link>
                             </div>
                         </div>
